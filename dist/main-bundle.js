@@ -3352,13 +3352,13 @@ eval("__webpack_require__(/*! ./main.css */ \"./src/main.css\");\n\n__webpack_re
 /***/ }),
 
 /***/ 0:
-/*!*******************************************!*\
-  !*** multi @babel/polyfill ./src/main.js ***!
-  \*******************************************/
+/*!**********************************************************!*\
+  !*** multi @babel/polyfill ./src/main.js ./src/main.css ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! @babel/polyfill */\"./node_modules/@babel/polyfill/lib/index.js\");\nmodule.exports = __webpack_require__(/*! ./src/main.js */\"./src/main.js\");\n\n\n//# sourceURL=webpack:///multi_@babel/polyfill_./src/main.js?");
+eval("__webpack_require__(/*! @babel/polyfill */\"./node_modules/@babel/polyfill/lib/index.js\");\n__webpack_require__(/*! ./src/main.js */\"./src/main.js\");\nmodule.exports = __webpack_require__(/*! ./src/main.css */\"./src/main.css\");\n\n\n//# sourceURL=webpack:///multi_@babel/polyfill_./src/main.js_./src/main.css?");
 
 /***/ })
 
