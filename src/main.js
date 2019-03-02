@@ -1,5 +1,7 @@
 require("webpack-hot-middleware/client?reload=true")
+require("react-hot-loader/patch")
 require("./main.css")
-require("./index.html")
-
+require("./style/main.styl")
+require("./index.hbs")
+require("./app")
 console.log('hi again')

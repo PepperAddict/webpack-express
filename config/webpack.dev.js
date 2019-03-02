@@ -41,7 +41,37 @@ module.exports = {
                         options: {
                             url: false
                         }
-                    }
+                    },
+                    { 
+                        loader: "postcss-loader",
+                        options: {
+                            indent: 'postcss',
+                            plugins: [
+                                require('autoprefixer')({
+                                    'browsers': ['> 1%', 'last 2 versions']
+                                })
+                            ]
+                        }
+                }
+                ]
+            },
+            {
+                test: /\.styl$/,
+                use: [ 
+                    { loader: "style-loader"},
+                    { loader: "css-loader"},
+                    { 
+                        loader: "postcss-loader",
+                        options: {
+                            indent: 'postcss',
+                            plugins: [
+                                require('autoprefixer')({
+                                    'browsers': ['> 1%', 'last 2 versions']
+                                })
+                            ]
+                        }
+                    },
+                    { loader: "stylus-loader"}
                 ]
             },
             {
@@ -53,6 +83,24 @@ module.exports = {
                             attrs: ["img:src"]
 
                         }
+                    }
+                ]
+            },
+            {
+                test: /\.hbs|.handlebars$/,
+                exclude: [/node_modules/],
+                use: [
+                    {
+                        loader: 'file-loader',
+                        query: {
+                            name: '[name].[ext]'
+                        }
+                    },
+                    {
+                        loader: "handlebars-loader",
+                        query: {
+                            inlineRequires: "/images/"
+                        },
                     }
                 ]
             },
@@ -70,9 +118,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new HTMLWebpackPlugin({
-            template: "./src/index.html"
-        })
+        new webpack.HotModuleReplacementPlugin()
     ]
 }

@@ -20,6 +20,8 @@ const webpackHotMiddleware = require("webpack-hot-middleware")(compiler)
 server.use(webpackDevMiddleware)
 server.use(webpackHotMiddleware)
 server.use(staticMiddleware)
-server.listen(8080, () => {
-    console.log('The server is listening in port 8080')
+
+const PORT = process.env.PORT || 8080
+server.listen(PORT, () => {
+    console.log(`The server is listening in http://localhost:${PORT}`)
 })
