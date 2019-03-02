@@ -1,4 +1,6 @@
 const path = require("path")
+const webpack = require("webpack")
+const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
     entry: {
@@ -12,9 +14,13 @@ module.exports = {
     },
     devServer: {
         contentBase: "dist",
-        port: 8888,
-        overlay: true //remove if you don't like the error overlay
+        hot: true, // hot reloading on
+        overlay: true, //remove if you don't like the error overlay in the browser
+        stats: {
+            colors: true
+        }
     },
+    devtool: "source-map",
     module: {
         rules: [
             {
@@ -41,15 +47,6 @@ module.exports = {
             {
                 test: /\.html$/,
                 use: [
-                    { 
-                        loader: "file-loader",
-                        options: {
-                            name: "[name].html"
-                        }
-                    },
-                    { // make a separate file
-                        loader: "extract-loader"
-                    },
                     {
                         loader: "html-loader",
                         options: {
@@ -71,5 +68,11 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new HTMLWebpackPlugin({
+            template: "./src/index.html"
+        })
+    ]
 }
