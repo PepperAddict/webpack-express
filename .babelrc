@@ -9,8 +9,7 @@
         },
         "debug": true
       }
-    ],
-    "@babel/preset-react"
+    ]
   ],
   "plugins": [
     ["@babel/plugin-transform-runtime", {
@@ -20,5 +19,10 @@
       "useESModules": false
     }, "react-hot-loader/babel"
     ]
-  ]
+  ],
+  "env": {
+    "development": {
+      "presets": [["@babel/preset-react", { "development": true}]]
+    }
+  }
 }

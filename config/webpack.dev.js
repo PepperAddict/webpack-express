@@ -1,6 +1,7 @@
 const path = require("path")
 const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
+const HandlebarsPlugin = require("handlebars-webpack-plugin")
 
 module.exports = {
     entry: {
@@ -10,12 +11,15 @@ module.exports = {
     output: {
         filename: "[name]-bundle.js",
         path: path.resolve(__dirname, "../dist"),
-        publicPath: "/"
+        publicPath: "/",
+        
+    },
+    watchOptions: {
+        poll: true
     },
     devServer: {
-        contentBase: "dist",
-        hot: true, // hot reloading on
-        overlay: true, //remove if you don't like the error overlay in the browser
+        publicPath: "/",
+        overlay: false, //remove if you don't like the error overlay in the browser
         stats: {
             colors: true
         }
@@ -76,26 +80,14 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                use: [
-                    {
-                        loader: "html-loader",
-                        options: {
-                            attrs: ["img:src"]
-
-                        }
-                    }
-                ]
+                use: [ {
+                    loader: "html-loader"
+                }]
             },
             {
                 test: /\.hbs|.handlebars$/,
                 exclude: [/node_modules/],
                 use: [
-                    {
-                        loader: 'file-loader',
-                        query: {
-                            name: '[name].[ext]'
-                        }
-                    },
                     {
                         loader: "handlebars-loader",
                         query: {
@@ -118,6 +110,11 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new HTMLWebpackPlugin({
+            title: "title test",
+            template: "./src/index.hbs"  //change this to .html if we're using html
+        }),
+
     ]
 }
