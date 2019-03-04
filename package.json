@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --config=config/webpack.dev.js",
     "build": "webpack --config=config/webpack.dev.js",
     "dev": "nodemon --inspect --watch config --watch src/server src/server/main.js",
-    "prod": "SET NODE_ENV=production & node src/server/main.js"
+    "prod": "NODE_ENV=production node src/server/main.js"
   },
   "keywords": [
     "nodejs",
