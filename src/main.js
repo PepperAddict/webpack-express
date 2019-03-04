@@ -8,5 +8,5 @@ require("./style/main.styl")
 require("./app")
 require("./index.hbs") 
 
-console.log('hello all')
+console.log('hello all ok')
 

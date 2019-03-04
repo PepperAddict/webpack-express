@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "cb7ddac9343e38ac2b97";
+/******/ 	var hotCurrentHash = "cda38d04e81f8cb90ffc";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -43891,7 +43891,7 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
     lineNumber: 7
   },
   __self: undefined
-}, "Hello again from React hi"), document.getElementById('react-root'));
+}, "Hello again from React. wuddup"), document.getElementById('react-root'));
 module.hot.accept();
 
 /***/ }),
@@ -43906,7 +43906,7 @@ module.hot.accept();
 var Handlebars = __webpack_require__(/*! ../../../../node_modules/handlebars/runtime.js */ "../../../node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<html>\r\n<head>\r\n\r\n</head>\r\n<body>\r\n    <div class=\"profile\">\r\n        <img src=\"images/cookie.jpg\" alt=\"cookie\">\r\n        <h1>Hello World 10</h1>\r\n        <div id=\"react-root\"></div>\r\n    </div> \r\n<script src=\"main-bundle.js\"></script>\r\n</body>\r\n\r\n</html>";
+    return "<html>\r\n<head>\r\n\r\n</head>\r\n<body>\r\n    <div class=\"profile\">\r\n        <img src=\"images/cookie.jpg\" alt=\"cookie\">\r\n        <h1>Hello World 101</h1>\r\n        <div id=\"react-root\"></div>\r\n    </div> \r\n<script src=\"main-bundle.js\"></script>\r\n</body>\r\n\r\n</html>";
 },"useData":true});
 
 /***/ }),
@@ -43986,7 +43986,7 @@ __webpack_require__(/*! ./app */ "./src/app.js");
 
 __webpack_require__(/*! ./index.hbs */ "./src/index.hbs");
 
-console.log('hello');
+console.log('hello all ok');
 
 /***/ }),
 

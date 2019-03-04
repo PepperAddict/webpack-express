@@ -1,7 +1,6 @@
 const path = require("path")
 const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
-const HandlebarsPlugin = require("handlebars-webpack-plugin")
 
 module.exports = {
     entry: {
