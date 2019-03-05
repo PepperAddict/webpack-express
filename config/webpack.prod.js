@@ -3,8 +3,8 @@ const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
-const isProd = process.env.NODE_ENV === "production"
-
+const UglifyPlugin = require("uglifyjs-webpack-plugin")
+const CompressionPlugin = require("compression-webpack-plugin")
 
 
 module.exports = {
@@ -29,7 +29,7 @@ module.exports = {
                 use: [{
                     loader: "babel-loader"
                 }],
-                exclude: /node_modules/
+                exclude: [/node_modules/]
             },
             {
                 test: /\.css$/,
@@ -108,12 +108,24 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new OptimizeCSSAssetsPlugin(),
-        new MiniCSSExtractPlugin({
-            filename: "[name]-[contenthash].css",
-            chunkFilename: "[id].css"
+    optimization: {
+        minimizer: [
+            new UglifyPlugin({
+            test: /\.js(\?.*)?$/i,
+            sourceMap: true, 
         }),
+            new CompressionPlugin({
+                algorithm: "gzip"
+            }),
+            new OptimizeCSSAssetsPlugin(),
+            new MiniCSSExtractPlugin({
+                filename: "[name]-[contenthash].css",
+                chunkFilename: "[id].css"
+            }),
+        ]
+    },
+    plugins: [
+
         new HTMLWebpackPlugin({
             title: "title test",
             template: "./src/index.hbs"  //change this to .html if we're using html
@@ -122,6 +134,7 @@ module.exports = {
             'process.env': {
                 'NODE_ENV': JSON.stringify("production")
             }
-        })
+        }),
+        
     ]
 }
