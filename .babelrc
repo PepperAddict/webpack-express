@@ -7,7 +7,8 @@
         "targets": {
           "browsers": ["last 2 versions"]
         },
-        "debug": true
+        "debug": true,
+        "sourceType": "unambiguous",
       }
     ],
     ["@babel/preset-react"]
@@ -16,15 +17,19 @@
     ["@babel/plugin-transform-runtime", {
       "corejs": false,
       "helpers": true,
+      "sourceType": "unambiguous",
       "regenerator": true,
       "useESModules": false
     }]
+  ],
+  "ignore": [
+    "node_modules"
   ],
   "env": {
     "development": {
       "presets": [
         ["@babel/preset-react", {
-          "development": true
+          "development": true,
         }]
       ]
     }

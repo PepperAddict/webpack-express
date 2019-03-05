@@ -1,14 +1,17 @@
 const path = require("path")
 const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
+const isProd = process.env.NODE_ENV === "production"
+
+
 
 module.exports = {
     entry: {
-        main: [ //0,1 = hot reloading
-            "webpack-hot-middleware/client?reload=true", "react-hot-loader/patch",
-            "@babel/polyfill", "./src/main.js"] //can be an array to concat them together
+        main: ["@babel/polyfill", "./src/main.js"] //can be an array to concat them together
     },
-    mode: "development",
+    mode: "production",
     output: {
         filename: "[name]-bundle.js",
         path: path.resolve(__dirname, "../dist"),
@@ -18,23 +21,13 @@ module.exports = {
     watchOptions: {
         poll: true
     },
-    devServer: {
-        publicPath: "/",
-        overlay: false, //remove if you don't like the error overlay in the browser
-        stats: {
-            colors: true
-        }
-    },
     devtool: "source-map",
     module: {
         rules: [
             {
-                test: /\.js|.jsx?$/,
+                test: /\.js|.jsx$/,
                 use: [{
-                    loader: "babel-loader",
-                    options: {
-                        sourceType: "module"
-                    }
+                    loader: "babel-loader"
                 }],
                 exclude: /node_modules/
             },
@@ -66,8 +59,10 @@ module.exports = {
             {
                 test: /\.styl$/,
                 use: [ 
-                    { loader: "style-loader"},
-                    { loader: "css-loader"},
+                    { loader: MiniCSSExtractPlugin.loader},
+                    { 
+                        loader: "css-loader"
+                    },
                     { 
                         loader: "postcss-loader",
                         options: {
@@ -114,11 +109,19 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
+        new OptimizeCSSAssetsPlugin(),
+        new MiniCSSExtractPlugin({
+            filename: "[name]-[contenthash].css",
+            chunkFilename: "[id].css"
+        }),
         new HTMLWebpackPlugin({
             title: "title test",
             template: "./src/index.hbs"  //change this to .html if we're using html
         }),
-
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify("production")
+            }
+        })
     ]
 }
