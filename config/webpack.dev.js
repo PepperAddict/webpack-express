@@ -119,6 +119,10 @@ module.exports = {
             title: "title test",
             template: "./src/index.hbs"  //change this to .html if we're using html
         }),
-
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('development')
+            }
+        }),
     ]
 }
