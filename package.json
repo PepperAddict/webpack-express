@@ -1,13 +1,13 @@
 {
   "name": "webpack-node-express",
   "version": "1.0.0",
-  "description": "setting up webpack to work with handlebars, css, stylus, react, and responsive images",
+  "description": "setting up webpack to work with handlebars, CSS, stylus, ReactJS, compression, and responsive images",
   "main": "index.js",
   "scripts": {
     "build:dev": "webpack --config=config/webpack.dev.js",
     "build": "webpack --config=config/webpack.prod.js",
     "dev": "nodemon --inspect --watch config --watch src/server src/server/main.js",
-    "prod": "cross-env NODE_ENV=production node src/server/main.js"
+    "prod": "cross-env NODE_ENV=production&& node src/server/main.js"
   },
   "keywords": [
     "nodejs",

@@ -8,7 +8,6 @@ const CompressionPlugin = require("compression-webpack-plugin")
 
 
 module.exports =  {
-
         entry: {
         main: ["@babel/polyfill", "./src/main.js"] //can be an array to concat them together
     },
