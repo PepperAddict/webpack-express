@@ -5,7 +5,7 @@ const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const UglifyPlugin = require("uglifyjs-webpack-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
-
+const BrotliPlugin = require("brotli-webpack-plugin")
 
 module.exports =  {
         entry: {
@@ -109,6 +109,16 @@ module.exports =  {
         ]
     },
     optimization: {
+        splitChunks: {
+            chunks: "all",
+            cachedGroups: {
+                vendor: {
+                    name: "vendor",
+                    chunks: "initial",
+                    minChunks: 2
+                }
+            }
+        },
         minimizer:  [
             new UglifyPlugin({
             test: /\.js(\?.*)?$/i,
@@ -136,6 +146,7 @@ module.exports =  {
                 NODE_ENV:'"production"'
             }
         }),
+        new BrotliPlugin()
         
     ]
 }

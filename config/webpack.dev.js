@@ -1,12 +1,16 @@
 const path = require("path")
 const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 
 module.exports = {
     entry: {
         main: [ //0,1 = hot reloading
             "webpack-hot-middleware/client?reload=true", "react-hot-loader/patch",
-            "@babel/polyfill", "./src/main.js"] //can be an array to concat them together
+            "@babel/polyfill", "./src/main.js"], //can be an array to concat them together,
+            other: [ //0,1 = hot reloading
+                "webpack-hot-middleware/client?reload=true", "react-hot-loader/patch",
+                "@babel/polyfill", "./src/main.js"]
     },
     mode: "development",
     output: {
@@ -23,6 +27,11 @@ module.exports = {
         overlay: false, //remove if you don't like the error overlay in the browser
         stats: {
             colors: true
+        }
+    },
+    optimization: {
+        splitChunks: {
+            chunks: "all"
         }
     },
     devtool: "source-map",
@@ -124,5 +133,9 @@ module.exports = {
                 'NODE_ENV': JSON.stringify('development')
             }
         }),
+        new BundleAnalyzerPlugin({
+            generateStatsFile: true
+        })
+
     ]
 }

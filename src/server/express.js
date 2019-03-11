@@ -12,14 +12,18 @@ const webpackDevMiddleware = require("webpack-dev-middleware")(
 )
 
 // telling it to look in the dist folder
-const staticMiddleware = express.static('dist')
+// const staticMiddleware = express.static('dist')
+const expressStaticGzip = require("express-static-gzip")
 
 //live reloading 
 const webpackHotMiddleware = require("webpack-hot-middleware")(compiler)
 
 server.use(webpackDevMiddleware)
 server.use(webpackHotMiddleware)
-server.use(staticMiddleware)
+server.use(expressStaticGzip("dist", {
+    enableBrotli: true
+}))
+// server.use(staticMiddleware)
 
 const PORT = process.env.PORT || 8080
 server.listen(PORT, () => {
