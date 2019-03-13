@@ -110,14 +110,7 @@ module.exports =  {
     },
     optimization: {
         splitChunks: {
-            chunks: "all",
-            cachedGroups: {
-                vendor: {
-                    name: "vendor",
-                    chunks: "initial",
-                    minChunks: 2
-                }
-            }
+            chunks: "all"
         },
         minimizer:  [
             new UglifyPlugin({

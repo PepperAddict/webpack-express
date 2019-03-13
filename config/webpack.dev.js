@@ -7,10 +7,7 @@ module.exports = {
     entry: {
         main: [ //0,1 = hot reloading
             "webpack-hot-middleware/client?reload=true", "react-hot-loader/patch",
-            "@babel/polyfill", "./src/main.js"], //can be an array to concat them together,
-            other: [ //0,1 = hot reloading
-                "webpack-hot-middleware/client?reload=true", "react-hot-loader/patch",
-                "@babel/polyfill", "./src/main.js"]
+            "@babel/polyfill", "@babel/register", "./src/main.js"], //can be an array to concat them together,
     },
     mode: "development",
     output: {
